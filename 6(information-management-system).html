@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Information Retrieval System</title>
+</head>
+<body>
+
+<h2>Information Retrieval System</h2>
+
+<h3>Register / Login</h3>
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<hr>
+
+<h3>Upload Document</h3>
+<input id="title" placeholder="Document Title">
+<textarea id="content" placeholder="Document Content"></textarea>
+<button onclick="upload()">Upload</button>
+
+<hr>
+
+<h3>Search Documents</h3>
+<input id="search" placeholder="Enter keyword">
+<button onclick="find()">Search</button>
+
+<div id="result"></div>
+
+<script>
+let users = {};
+let documents = [];
+let logged = false;
+
+function register() {
+    users[user.value] = pass.value;
+    msg.innerHTML = "Registration Successful";
+}
+
+function login() {
+    if(users[user.value] === pass.value) {
+        logged = true;
+        msg.innerHTML = "Login Successful";
+    } else {
+        msg.innerHTML = "Invalid Login";
+    }
+}
+
+function upload() {
+    if(!logged) return alert("Please Login");
+
+    documents.push({
+        title: title.value,
+        content: content.value
+    });
+
+    alert("Document Uploaded");
+}
+
+function find() {
+    let q = search.value.toLowerCase();
+
+    let results = documents.filter(d =>
+        d.title.toLowerCase().includes(q) ||
+        d.content.toLowerCase().includes(q)
+    );
+
+    result.innerHTML = results.length
+        ? results.map(d => "<h3>" + d.title +
+          "</h3><p>" + d.content + "</p>").join("")
+        : "No Results Found";
+}
+</script>
+
+</body>
+</html>
