@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shape Circumference</title>
+<style>
+body { font-family: Arial; font-weight: bold; }
+.container { display: flex; gap: 20px; padding: 20px; }
+.shape { border: 1px solid black; padding: 10px; text-align: center; }
+.square { width: 4cm; height: 4cm; }
+.rectangle { width: 6cm; height: 3cm; }
+.circle { width: 4cm; height: 4cm; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<h2>Ascending Order</h2>
+<div class="container" id="asc"></div>
+
+<h2>Descending Order</h2>
+<div class="container" id="desc"></div>
+
+<script>
+let shapes = [
+ {type:"square", w:4, h:4},
+ {type:"rectangle", w:6, h:3},
+ {type:"circle", w:4, h:4}
+];
+
+shapes.forEach(s => {
+ s.c = s.type === "circle" ? Math.PI * s.w : 2*(s.w+s.h);
+});
+
+function display(arr, id) {
+ document.getElementById(id).innerHTML = arr.map(s =>
+ `<div class="shape ${s.type}">
+ ${s.type}<br>${s.c.toFixed(2)} cm
+ </div>`
+ ).join("");
+}
+
+display([...shapes].sort((a,b)=>a.c-b.c), "asc");
+display([...shapes].sort((a,b)=>b.c-a.c), "desc");
+</script>
+
+</body>
+</html>
