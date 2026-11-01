@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Servlet Simulation</title>
+</head>
+<body>
+
+<h2>Servlet Form</h2>
+
+<form onsubmit="hello(event)">
+    Enter Name:
+    <input type="text" id="name" required>
+    <button type="submit">Submit</button>
+</form>
+
+<h3 id="result"></h3>
+
+<hr>
+
+<h2>Session Tracking</h2>
+<p>Session ID: <span id="sid"></span></p>
+<p>Hit Count: <span id="count">0</span></p>
+
+<button onclick="hit()">Refresh Session</button>
+
+<script>
+let sessionID = "SESSION-123";
+let hits = 0;
+
+document.getElementById("sid").innerHTML = sessionID;
+
+function hello(event) {
+    event.preventDefault();
+    let name = document.getElementById("name").value;
+    document.getElementById("result").innerHTML =
+        "Hello, " + name + "!";
+}
+
+function hit() {
+    hits++;
+    document.getElementById("count").innerHTML = hits;
+}
+</script>
+
+</body>
+</html>
