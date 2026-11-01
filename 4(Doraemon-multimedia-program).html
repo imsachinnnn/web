@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Multimedia Website</title>
+</head>
+<body>
+
+<h1>Doraemon Entertainment Show</h1>
+
+<h2>Video</h2>
+<video controls width="300">
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<h2>Audio</h2>
+<audio controls>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h2>Images</h2>
+<img src="doraemon1.jpeg" width="100">
+<img src="doraemon2.jpeg" width="100">
+
+<h2>Comments</h2>
+<textarea id="comment"></textarea>
+<button onclick="addComment()">Submit</button>
+
+<div id="list"></div>
+
+<script>
+function addComment() {
+    let text = document.getElementById("comment").value;
+    if(text.trim() != "") {
+        let div = document.createElement("div");
+        div.textContent = text;
+        document.getElementById("list").appendChild(div);
+        document.getElementById("comment").value = "";
+    }
+}
+</script>
+
+</body>
+</html>
